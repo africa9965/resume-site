@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Password Generator</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
-    <h1>Password Generator 🔐</h1>
-    
-    <div class="output-box">
-      <input type="text" id="password-output" readonly />
-      <button onclick="copyPassword()">📋</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white text-slate-800 rounded-2xl shadow-lg p-6 w-full max-w-md">
+      <h1 class="text-2xl font-bold flex items-center gap-2 mb-4">
+        Password Generator
+        <span class="text-yellow-500">🔒</span>
+      </h1>
+
+      <div class="mb-4">
+        <input type="text" id="password-output" readonly class="w-full p-3 border border-gray-300 rounded-lg text-lg font-mono bg-gray-100" />
+      </div>
+
+      <div class="flex justify-between items-center mb-4">
+        <button onclick="copyPassword()" class="bg-slate-200 px-4 py-2 rounded hover:bg-slate-300 transition text-sm">📋 Copy</button>
+        <div class="text-sm text-slate-500">Length: <span id="length-val">16</span></div>
+      </div>
+
+      <input type="range" min="6" max="64" value="16" id="length-slider" class="w-full mb-4 accent-blue-600" />
+
+      <div class="grid grid-cols-2 gap-4 mb-4 text-sm">
+        <label class="flex items-center gap-2">
+          <input type="checkbox" id="include-uppercase" class="accent-blue-600" checked />
+          Include Uppercase
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="checkbox" id="include-lowercase" class="accent-blue-600" checked />
+          Include Lowercase
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="checkbox" id="include-numbers" class="accent-blue-600" checked />
+          Include Numbers
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="checkbox" id="include-symbols" class="accent-blue-600" />
+          Include Symbols
+        </label>
+      </div>
+
+      <button onclick="generatePassword()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Generate</button>
     </div>
 
-    <div class="controls">
-      <label>Password Length: <span id="length-val">16</span></label>
-      <input type="range" min="6" max="64" value="16" id="length-slider" />
-
-      <label><input type="checkbox" id="include-uppercase" checked /> Include Uppercase</label>
-      <label><input type="checkbox" id="include-lowercase" checked /> Include Lowercase</label>
-      <label><input type="checkbox" id="include-numbers" checked /> Include Numbers</label>
-      <label><input type="checkbox" id="include-symbols" /> Include Symbols</label>
-
-      <button onclick="generatePassword()">🔁 Generate</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
